@@ -16,8 +16,10 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
         String sql = "SELECT * FROM usuarios WHERE username = ? AND password = ?";
 
-        try (Connection con = ConexionBD.getConexion();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+        try (
+                Connection con = ConexionBD.getConexion();
+                PreparedStatement ps = con.prepareStatement(sql)
+        ) {
 
             ps.setString(1, username);
             ps.setString(2, password);
@@ -25,13 +27,12 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                usuario = new Usuario(
-                        rs.getInt("id"),
-                        rs.getString("username"),
-                        rs.getString("password"),
-                        rs.getString("nombre"),
-                        "ADMIN"
-                );
+                usuario = new Usuario();
+                usuario.setId(rs.getInt("id"));
+                usuario.setUsername(rs.getString("username"));
+                usuario.setPassword(rs.getString("password"));
+                usuario.setNombre(rs.getString("nombre"));
+                usuario.setTipo(rs.getString("tipo"));
             }
 
         } catch (Exception e) {

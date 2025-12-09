@@ -2,28 +2,29 @@ package com.liceolapaz.dam.jvv.model;
 
 public class Usuario {
 
-    private int idUsuario;
+    private int id;
     private String username;
     private String password;
     private String nombre;
-    private String rol;
+    private String tipo;
 
-    public Usuario() {}
+    public Usuario() {
+    }
 
-    public Usuario(int idUsuario, String username, String password, String nombre, String rol) {
-        this.idUsuario = idUsuario;
+    public Usuario(int id, String username, String password, String nombre, String tipo) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.nombre = nombre;
-        this.rol = rol;
+        this.tipo = tipo;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public int getId() {
+        return id;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -50,11 +51,11 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getRol() {
-        return rol;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setRol(String rol) {
-        this.rol = rol;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }

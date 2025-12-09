@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+
+<VBox spacing="15" alignment="CENTER"
+      xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.liceolapaz.dam.jvv.controller.MainController">
+
+    <Label text="DATOS DEL USUARIO" style="-fx-font-size:22px; -fx-font-weight:bold"/>
+
+    <Label fx:id="lblNombre"/>
+    <Label fx:id="lblUsuario"/>
+    <Label fx:id="lblTipo"/>
+
+    <Button text="Ver Equipos" onAction="#verEquipos"/>
+    <Button text="Salir" onAction="#salir"/>
+
+</VBox>
