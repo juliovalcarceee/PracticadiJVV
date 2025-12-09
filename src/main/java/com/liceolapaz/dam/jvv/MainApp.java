@@ -9,16 +9,19 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+
         FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/view/login.fxml")
+                getClass().getResource("/login-view.fxml")
         );
-        Scene scene = new Scene(loader.load(), 600, 400);
+
+        Scene scene = new Scene(loader.load(), 500, 300);
+
         stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();
     }
 
     public static void main(String[] args) {
-        launch(args);
+        launch();
     }
 }
