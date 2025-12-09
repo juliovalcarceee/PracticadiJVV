@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 
 <BorderPane xmlns="http://javafx.com/javafx/8"
@@ -15,14 +15,20 @@
 
     <center>
         <TableView fx:id="tablaEquipos">
-
             <columns>
                 <TableColumn fx:id="colId" text="ID"/>
                 <TableColumn fx:id="colNombre" text="Nombre"/>
                 <TableColumn fx:id="colCiudad" text="Ciudad"/>
             </columns>
-
         </TableView>
     </center>
+
+    <bottom>
+        <HBox spacing="10" alignment="CENTER" style="-fx-padding:10;">
+            <Button text="Nuevo" onAction="#nuevoEquipo"/>
+            <Button text="Editar" onAction="#editarEquipo"/>
+            <Button text="Eliminar" onAction="#eliminarEquipo"/>
+        </HBox>
+    </bottom>
 
 </BorderPane>

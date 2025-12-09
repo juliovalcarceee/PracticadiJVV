@@ -2,24 +2,24 @@ package com.liceolapaz.dam.jvv.model;
 
 public class Equipo {
 
-    private int idEquipo;
+    private int id;
     private String nombre;
     private String ciudad;
 
     public Equipo() {}
 
-    public Equipo(int idEquipo, String nombre, String ciudad) {
-        this.idEquipo = idEquipo;
+    public Equipo(int id, String nombre, String ciudad) {
+        this.id = id;
         this.nombre = nombre;
         this.ciudad = ciudad;
     }
 
-    public int getIdEquipo() {
-        return idEquipo;
+    public int getId() {
+        return id;
     }
 
-    public void setIdEquipo(int idEquipo) {
-        this.idEquipo = idEquipo;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {

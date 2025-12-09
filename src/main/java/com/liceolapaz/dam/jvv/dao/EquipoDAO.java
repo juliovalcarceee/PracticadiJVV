@@ -5,6 +5,11 @@ import java.util.List;
 
 public interface EquipoDAO {
 
-    List<Equipo> getAllEquipos();
+    List<Equipo> listar();
 
+    void insertar(Equipo equipo);
+
+    void actualizar(Equipo equipo);
+
+    void eliminar(int id);
 }
