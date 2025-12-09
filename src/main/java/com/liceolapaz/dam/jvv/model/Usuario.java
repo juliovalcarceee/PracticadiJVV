@@ -1,32 +1,60 @@
 package com.liceolapaz.dam.jvv.model;
 
-import java.time.LocalDate;
-
-// La clase Entity que representa la fila de la tabla Usuario
 public class Usuario {
-    private int id;
-    private String nombreUsuario;
-    private String nombreCompleto;
-    private LocalDate fechaNacimiento;
 
-    // El hash de la contraseña no se expone fuera del DAO por seguridad
+    private int idUsuario;
+    private String username;
+    private String password;
+    private String nombre;
+    private String rol;
 
-    public Usuario(int id, String nombreUsuario, String nombreCompleto, LocalDate fechaNacimiento) {
-        this.id = id;
-        this.nombreUsuario = nombreUsuario;
-        this.nombreCompleto = nombreCompleto;
-        this.fechaNacimiento = fechaNacimiento;
+    public Usuario() {}
+
+    public Usuario(int idUsuario, String username, String password, String nombre, String rol) {
+        this.idUsuario = idUsuario;
+        this.username = username;
+        this.password = password;
+        this.nombre = nombre;
+        this.rol = rol;
     }
 
-    // --- Getters ---
-    public int getId() { return id; }
-    public String getNombreUsuario() { return nombreUsuario; }
-    public String getNombreCompleto() { return nombreCompleto; }
-    public LocalDate getFechaNacimiento() { return fechaNacimiento; }
+    public int getIdUsuario() {
+        return idUsuario;
+    }
 
-    // **DATO CALCULADO 1 (Ejemplo):** Cálculo de la edad
-    public int getEdad() {
-        if (fechaNacimiento == null) return 0;
-        return LocalDate.now().getYear() - fechaNacimiento.getYear();
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 }
