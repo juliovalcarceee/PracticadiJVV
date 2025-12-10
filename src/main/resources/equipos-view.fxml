@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
 <BorderPane xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1"
@@ -24,11 +24,7 @@
     </center>
 
     <bottom>
-        <HBox spacing="10" alignment="CENTER" style="-fx-padding:10;">
-            <Button text="Nuevo" onAction="#nuevoEquipo"/>
-            <Button text="Editar" onAction="#editarEquipo"/>
-            <Button text="Eliminar" onAction="#eliminarEquipo"/>
-        </HBox>
+        <Button text="Volver al menú" onAction="#volverMenu"/>
     </bottom>
 
 </BorderPane>

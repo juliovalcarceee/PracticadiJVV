@@ -21,7 +21,6 @@ public class MainController {
 
     private Usuario usuario;
 
-    // ========= RECIBE EL USUARIO DEL LOGIN =========
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
 
@@ -30,7 +29,6 @@ public class MainController {
         lblTipo.setText("Tipo: " + usuario.getTipo());
     }
 
-    // ========= BOTÓN VER EQUIPOS =========
     @FXML
     private void verEquipos() {
         try {
@@ -50,7 +48,25 @@ public class MainController {
         }
     }
 
-    // ========= BOTÓN SALIR =========
+    @FXML
+    private void verJugadores() {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/jugadores-view.fxml")
+            );
+
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Lista de Jugadores");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     private void salir() {
         Stage stage = (Stage) lblNombre.getScene().getWindow();

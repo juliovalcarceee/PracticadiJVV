@@ -1,20 +1,46 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<VBox spacing="15" alignment="CENTER"
-      xmlns="http://javafx.com/javafx/8"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.liceolapaz.dam.jvv.controller.MainController">
+<BorderPane xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.liceolapaz.dam.jvv.controller.MainController">
 
-    <Label text="DATOS DEL USUARIO" style="-fx-font-size:22px; -fx-font-weight:bold"/>
+    <!-- TITULO -->
+    <top>
+        <Label text="DATOS DEL USUARIO"
+               style="-fx-font-size: 22px; -fx-font-weight: bold;"
+               BorderPane.alignment="CENTER"/>
+    </top>
 
-    <Label fx:id="lblNombre"/>
-    <Label fx:id="lblUsuario"/>
-    <Label fx:id="lblTipo"/>
+    <!-- DATOS USUARIO -->
+    <center>
+        <VBox spacing="15" alignment="CENTER">
 
-    <Button text="Ver Equipos" onAction="#verEquipos"/>
-    <Button text="Salir" onAction="#salir"/>
+            <HBox spacing="10">
+                <Label text="Nombre:"/>
+                <Label fx:id="lblNombre"/>
+            </HBox>
 
-</VBox>
+            <HBox spacing="10">
+                <Label text="Usuario:"/>
+                <Label fx:id="lblUsuario"/>
+            </HBox>
+
+            <HBox spacing="10">
+                <Label text="Tipo:"/>
+                <Label fx:id="lblTipo"/>
+            </HBox>
+
+            <!-- BOTONES -->
+            <HBox spacing="15" alignment="CENTER" style="-fx-padding: 20;">
+                <Button text="Ver Equipos" onAction="#verEquipos"/>
+                <Button text="Ver Jugadores" onAction="#verJugadores"/>
+                <Button text="Salir" onAction="#salir"/>
+            </HBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>

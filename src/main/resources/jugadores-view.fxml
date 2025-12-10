@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.liceolapaz.dam.jvv.controller.JugadorController">
+
+    <top>
+        <Label text="LISTA DE JUGADORES"
+               style="-fx-font-size:22px; -fx-font-weight:bold"
+               BorderPane.alignment="CENTER"/>
+    </top>
+
+    <center>
+        <TableView fx:id="tablaJugadores">
+            <columns>
+                <TableColumn fx:id="colId" text="ID"/>
+                <TableColumn fx:id="colNombre" text="Nombre"/>
+                <TableColumn fx:id="colPosicion" text="Posición"/>
+                <TableColumn fx:id="colEdad" text="Edad"/>
+                <TableColumn fx:id="colEquipo" text="Equipo"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <right>
+        <VBox spacing="10">
+
+
+            <TextField fx:id="txtNombre" promptText="Nombre"/>
+            <TextField fx:id="txtPosicion" promptText="Posición"/>
+            <TextField fx:id="txtEdad" promptText="Edad"/>
+            <TextField fx:id="txtEquipo" promptText="ID Equipo"/>
+
+            <Button text="Insertar" onAction="#insertarJugador"/>
+            <Button text="Editar" onAction="#editarJugador"/>
+            <Button text="Eliminar" onAction="#eliminarJugador"/>
+        </VBox>
+    </right>
+
+    <bottom>
+        <Button text="Volver al menú" onAction="#volverMenu"/>
+    </bottom>
+
+</BorderPane>

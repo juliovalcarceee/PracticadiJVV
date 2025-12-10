@@ -7,7 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class EquipoController {
 
@@ -16,79 +16,60 @@ public class EquipoController {
     @FXML private TableColumn<Equipo, String> colNombre;
     @FXML private TableColumn<Equipo, String> colCiudad;
 
-    private final EquipoDAO equipoDAO = new EquipoDAOImp();
+    @FXML private TextField txtNombre;
+    @FXML private TextField txtCiudad;
+
+    private EquipoDAO equipoDAO = new EquipoDAOImp();
     private ObservableList<Equipo> lista;
 
     @FXML
     public void initialize() {
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        colCiudad.setCellValueFactory(new PropertyValueFactory<>("ciudad"));
+        colId.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("id"));
+        colNombre.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("nombre"));
+        colCiudad.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("ciudad"));
 
-        cargarDatos();
+        cargarEquipos();
     }
 
-    private void cargarDatos() {
+    private void cargarEquipos() {
         lista = FXCollections.observableArrayList(equipoDAO.listar());
         tablaEquipos.setItems(lista);
     }
 
     @FXML
-    private void nuevoEquipo() {
-        TextInputDialog dialog = new TextInputDialog();
-        dialog.setHeaderText("Nuevo Equipo");
-        dialog.setContentText("Nombre, Ciudad (separados por coma)");
+    private void insertarEquipo() {
+        Equipo e = new Equipo();
+        e.setNombre(txtNombre.getText());
+        e.setCiudad(txtCiudad.getText());
 
-        dialog.showAndWait().ifPresent(texto -> {
-            String[] partes = texto.split(",");
-
-            if (partes.length == 2) {
-                Equipo e = new Equipo(0, partes[0].trim(), partes[1].trim());
-                equipoDAO.insertar(e);
-                cargarDatos();
-            }
-        });
+        equipoDAO.insertar(e);
+        cargarEquipos();
     }
 
     @FXML
     private void editarEquipo() {
-        Equipo seleccionado = tablaEquipos.getSelectionModel().getSelectedItem();
+        Equipo e = tablaEquipos.getSelectionModel().getSelectedItem();
+        if (e != null) {
+            e.setNombre(txtNombre.getText());
+            e.setCiudad(txtCiudad.getText());
 
-        if (seleccionado == null) return;
-
-        TextInputDialog dialog = new TextInputDialog(
-                seleccionado.getNombre() + "," + seleccionado.getCiudad()
-        );
-
-        dialog.setHeaderText("Editar Equipo");
-        dialog.setContentText("Nombre, Ciudad");
-
-        dialog.showAndWait().ifPresent(texto -> {
-            String[] partes = texto.split(",");
-
-            if (partes.length == 2) {
-                seleccionado.setNombre(partes[0].trim());
-                seleccionado.setCiudad(partes[1].trim());
-                equipoDAO.actualizar(seleccionado);
-                cargarDatos();
-            }
-        });
+            equipoDAO.actualizar(e);
+            cargarEquipos();
+        }
     }
 
     @FXML
     private void eliminarEquipo() {
-        Equipo seleccionado = tablaEquipos.getSelectionModel().getSelectedItem();
-
-        if (seleccionado == null) return;
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Eliminar");
-        alert.setHeaderText("¿Eliminar equipo?");
-        alert.setContentText(seleccionado.getNombre());
-
-        if (alert.showAndWait().get() == ButtonType.OK) {
-            equipoDAO.eliminar(seleccionado.getId());
-            cargarDatos();
+        Equipo e = tablaEquipos.getSelectionModel().getSelectedItem();
+        if (e != null) {
+            equipoDAO.eliminar(e.getId());
+            cargarEquipos();
         }
+    }
+
+    @FXML
+    private void volverMenu() {
+        Stage stage = (Stage) tablaEquipos.getScene().getWindow();
+        stage.close();
     }
 }

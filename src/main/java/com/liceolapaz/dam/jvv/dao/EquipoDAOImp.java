@@ -3,7 +3,9 @@ package com.liceolapaz.dam.jvv.dao;
 import com.liceolapaz.dam.jvv.db.ConexionBD;
 import com.liceolapaz.dam.jvv.model.Equipo;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,18 +14,17 @@ public class EquipoDAOImp implements EquipoDAO {
     @Override
     public List<Equipo> listar() {
         List<Equipo> lista = new ArrayList<>();
+        String sql = "SELECT * FROM equipos";
 
-        try (Connection con = ConexionBD.getConexion()) {
-            String sql = "SELECT * FROM equipos";
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(sql);
+        try (Connection con = ConexionBD.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                Equipo e = new Equipo(
-                        rs.getInt("id"),
-                        rs.getString("nombre"),
-                        rs.getString("ciudad")
-                );
+                Equipo e = new Equipo();
+                e.setId(rs.getInt("id"));
+                e.setNombre(rs.getString("nombre"));
+                e.setCiudad(rs.getString("ciudad"));
                 lista.add(e);
             }
 
@@ -35,44 +36,50 @@ public class EquipoDAOImp implements EquipoDAO {
     }
 
     @Override
-    public void insertar(Equipo equipo) {
-        try (Connection con = ConexionBD.getConexion()) {
-            String sql = "INSERT INTO equipos (nombre, ciudad) VALUES (?, ?)";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, equipo.getNombre());
-            ps.setString(2, equipo.getCiudad());
+    public void insertar(Equipo e) {
+        String sql = "INSERT INTO equipos (nombre, ciudad) VALUES (?, ?)";
+
+        try (Connection con = ConexionBD.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, e.getNombre());
+            ps.setString(2, e.getCiudad());
             ps.executeUpdate();
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
     @Override
-    public void actualizar(Equipo equipo) {
-        try (Connection con = ConexionBD.getConexion()) {
-            String sql = "UPDATE equipos SET nombre=?, ciudad=? WHERE id=?";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, equipo.getNombre());
-            ps.setString(2, equipo.getCiudad());
-            ps.setInt(3, equipo.getId());
+    public void actualizar(Equipo e) {
+        String sql = "UPDATE equipos SET nombre=?, ciudad=? WHERE id=?";
+
+        try (Connection con = ConexionBD.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, e.getNombre());
+            ps.setString(2, e.getCiudad());
+            ps.setInt(3, e.getId());
             ps.executeUpdate();
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
     @Override
     public void eliminar(int id) {
-        try (Connection con = ConexionBD.getConexion()) {
-            String sql = "DELETE FROM equipos WHERE id=?";
-            PreparedStatement ps = con.prepareStatement(sql);
+        String sql = "DELETE FROM equipos WHERE id=?";
+
+        try (Connection con = ConexionBD.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
             ps.setInt(1, id);
             ps.executeUpdate();
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 }

@@ -2,28 +2,29 @@ package com.liceolapaz.dam.jvv.model;
 
 public class Jugador {
 
-    private int idJugador;
+    private int id;
     private String nombre;
-    private int edad;
     private String posicion;
-    private Equipo equipo;   // 1:N
+    private int edad;
+    private int equipoId;
 
-    public Jugador() {}
+    public Jugador() {
+    }
 
-    public Jugador(int idJugador, String nombre, int edad, String posicion, Equipo equipo) {
-        this.idJugador = idJugador;
+    public Jugador(int id, String nombre, String posicion, int edad, int equipoId) {
+        this.id = id;
         this.nombre = nombre;
-        this.edad = edad;
         this.posicion = posicion;
-        this.equipo = equipo;
+        this.edad = edad;
+        this.equipoId = equipoId;
     }
 
-    public int getIdJugador() {
-        return idJugador;
+    public int getId() {
+        return id;
     }
 
-    public void setIdJugador(int idJugador) {
-        this.idJugador = idJugador;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -34,14 +35,6 @@ public class Jugador {
         this.nombre = nombre;
     }
 
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
-    }
-
     public String getPosicion() {
         return posicion;
     }
@@ -50,11 +43,19 @@ public class Jugador {
         this.posicion = posicion;
     }
 
-    public Equipo getEquipo() {
-        return equipo;
+    public int getEdad() {
+        return edad;
     }
 
-    public void setEquipo(Equipo equipo) {
-        this.equipo = equipo;
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public int getEquipoId() {
+        return equipoId;
+    }
+
+    public void setEquipoId(int equipoId) {
+        this.equipoId = equipoId;
     }
 }
