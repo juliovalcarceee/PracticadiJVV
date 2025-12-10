@@ -10,14 +10,9 @@ import javafx.stage.Stage;
 
 public class MainController {
 
-    @FXML
-    private Label lblNombre;
-
-    @FXML
-    private Label lblUsuario;
-
-    @FXML
-    private Label lblTipo;
+    @FXML private Label lblNombre;
+    @FXML private Label lblUsuario;
+    @FXML private Label lblTipo;
 
     private Usuario usuario;
 
@@ -38,6 +33,9 @@ public class MainController {
 
             Parent root = loader.load();
 
+            EquipoController controller = loader.getController();
+            controller.setUsuario(usuario);
+
             Stage stage = new Stage();
             stage.setTitle("Lista de Equipos");
             stage.setScene(new Scene(root));
@@ -56,6 +54,9 @@ public class MainController {
             );
 
             Parent root = loader.load();
+
+            JugadorController controller = loader.getController();
+            controller.setUsuario(usuario);
 
             Stage stage = new Stage();
             stage.setTitle("Lista de Jugadores");

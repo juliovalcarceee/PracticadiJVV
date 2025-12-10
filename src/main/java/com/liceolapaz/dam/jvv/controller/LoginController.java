@@ -1,16 +1,15 @@
 package com.liceolapaz.dam.jvv.controller;
-import javafx.scene.Parent;
+
 import com.liceolapaz.dam.jvv.dao.UsuarioDAO;
 import com.liceolapaz.dam.jvv.dao.UsuarioDAOImpl;
 import com.liceolapaz.dam.jvv.model.Usuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.Parent;
-
 import javafx.stage.Stage;
 
 public class LoginController {
@@ -56,7 +55,7 @@ public class LoginController {
             Parent root = loader.load();
 
             MainController controller = loader.getController();
-            controller.setUsuario(usuario);
+            controller.setUsuario(usuario);   // ✅ PASO CLAVE (YA LO TENÍAS BIEN)
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));

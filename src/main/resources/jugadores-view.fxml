@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -27,16 +28,20 @@
 
     <right>
         <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
 
+            <TextField fx:id="txtBuscar" promptText="Buscar por nombre..."/>
 
             <TextField fx:id="txtNombre" promptText="Nombre"/>
             <TextField fx:id="txtPosicion" promptText="Posición"/>
             <TextField fx:id="txtEdad" promptText="Edad"/>
             <TextField fx:id="txtEquipo" promptText="ID Equipo"/>
 
-            <Button text="Insertar" onAction="#insertarJugador"/>
-            <Button text="Editar" onAction="#editarJugador"/>
-            <Button text="Eliminar" onAction="#eliminarJugador"/>
+            <Button fx:id="btnInsertar" text="Insertar" onAction="#insertarJugador"/>
+            <Button fx:id="btnEditar" text="Editar" onAction="#editarJugador"/>
+            <Button fx:id="btnEliminar" text="Eliminar" onAction="#eliminarJugador"/>
         </VBox>
     </right>
 

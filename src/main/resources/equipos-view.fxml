@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -22,6 +23,22 @@
             </columns>
         </TableView>
     </center>
+
+    <right>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <TextField fx:id="txtBuscar" promptText="Buscar por nombre..."/>
+            <TextField fx:id="txtNombre" promptText="Nombre"/>
+            <TextField fx:id="txtCiudad" promptText="Ciudad"/>
+
+            <Button fx:id="btnInsertar" text="Insertar" onAction="#insertarEquipo"/>
+            <Button fx:id="btnEditar" text="Editar" onAction="#editarEquipo"/>
+            <Button fx:id="btnEliminar" text="Eliminar" onAction="#eliminarEquipo"/>
+        </VBox>
+    </right>
 
     <bottom>
         <Button text="Volver al menú" onAction="#volverMenu"/>
