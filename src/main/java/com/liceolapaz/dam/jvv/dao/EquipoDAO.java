@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface EquipoDAO {
 
-    List<Equipo> listar();
+    List<Equipo> obtenerTodos();
 
     void insertar(Equipo equipo);
 

@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface JugadorDAO {
 
-    List<Jugador> listar();
+    List<Jugador> obtenerTodos();
 
     void insertar(Jugador jugador);
 

@@ -19,25 +19,22 @@ public class MainController {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
 
-        lblNombre.setText("Nombre: " + usuario.getNombre());
-        lblUsuario.setText("Usuario: " + usuario.getUsername());
-        lblTipo.setText("Tipo: " + usuario.getTipo());
+        lblNombre.setText(usuario.getNombre());
+        lblUsuario.setText(usuario.getUsername());
+        lblTipo.setText(usuario.getTipo());
     }
 
     @FXML
     private void verEquipos() {
         try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/equipos-view.fxml")
-            );
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/equipos-view.fxml"));
             Parent root = loader.load();
 
             EquipoController controller = loader.getController();
             controller.setUsuario(usuario);
 
             Stage stage = new Stage();
-            stage.setTitle("Lista de Equipos");
+            stage.setTitle("Equipos");
             stage.setScene(new Scene(root));
             stage.show();
 
@@ -49,17 +46,14 @@ public class MainController {
     @FXML
     private void verJugadores() {
         try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/jugadores-view.fxml")
-            );
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/jugadores-view.fxml"));
             Parent root = loader.load();
 
             JugadorController controller = loader.getController();
             controller.setUsuario(usuario);
 
             Stage stage = new Stage();
-            stage.setTitle("Lista de Jugadores");
+            stage.setTitle("Jugadores");
             stage.setScene(new Scene(root));
             stage.show();
 

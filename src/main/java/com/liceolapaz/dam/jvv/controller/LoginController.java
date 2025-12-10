@@ -47,6 +47,7 @@ public class LoginController {
     }
 
     private void abrirPanel(Usuario usuario) {
+
         try {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/main-view.fxml")
@@ -55,13 +56,14 @@ public class LoginController {
             Parent root = loader.load();
 
             MainController controller = loader.getController();
-            controller.setUsuario(usuario);   // ✅ PASO CLAVE (YA LO TENÍAS BIEN)
+            controller.setUsuario(usuario);
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("Panel Principal");
             stage.show();
 
+            // Cerrar ventana de login
             Stage actual = (Stage) txtUsuario.getScene().getWindow();
             actual.close();
 

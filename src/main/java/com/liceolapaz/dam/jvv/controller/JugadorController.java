@@ -7,20 +7,23 @@ import com.liceolapaz.dam.jvv.model.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class JugadorController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class JugadorController implements Initializable {
 
     @FXML private TableView<Jugador> tablaJugadores;
     @FXML private TableColumn<Jugador, Integer> colId;
     @FXML private TableColumn<Jugador, String> colNombre;
     @FXML private TableColumn<Jugador, String> colPosicion;
     @FXML private TableColumn<Jugador, Integer> colEdad;
-    @FXML private TableColumn<Jugador, Integer> colEquipo;
+    @FXML private TableColumn<Jugador, Integer> colEquipoId;
 
     @FXML private TextField txtBuscar;
     @FXML private TextField txtNombre;
@@ -32,50 +35,52 @@ public class JugadorController {
     @FXML private Button btnEditar;
     @FXML private Button btnEliminar;
 
+    private JugadorDAO jugadorDAO = new JugadorDAOImpl();
+    private ObservableList<Jugador> listaJugadores;
+    private FilteredList<Jugador> listaFiltrada;
     private Usuario usuario;
 
-    private JugadorDAO jugadorDAO = new JugadorDAOImpl();
-    private ObservableList<Jugador> lista;
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
 
-    @FXML
-    public void initialize() {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colPosicion.setCellValueFactory(new PropertyValueFactory<>("posicion"));
         colEdad.setCellValueFactory(new PropertyValueFactory<>("edad"));
-        colEquipo.setCellValueFactory(new PropertyValueFactory<>("equipoId"));
+        colEquipoId.setCellValueFactory(new PropertyValueFactory<>("equipoId"));
 
-        cargarJugadores();
+        listaJugadores = FXCollections.observableArrayList(jugadorDAO.obtenerTodos());
+        listaFiltrada = new FilteredList<>(listaJugadores, p -> true);
+        tablaJugadores.setItems(listaFiltrada);
+
+        txtBuscar.textProperty().addListener((obs, oldVal, newVal) -> {
+            listaFiltrada.setPredicate(j -> {
+                if (newVal == null || newVal.isEmpty()) return true;
+                String texto = newVal.toLowerCase();
+                return j.getNombre().toLowerCase().contains(texto)
+                        || j.getPosicion().toLowerCase().contains(texto)
+                        || String.valueOf(j.getEquipoId()).contains(texto);
+            });
+        });
+
+        tablaJugadores.getSelectionModel().selectedItemProperty().addListener((obs, o, n) -> {
+            if (n != null) {
+                txtNombre.setText(n.getNombre());
+                txtPosicion.setText(n.getPosicion());
+                txtEdad.setText(String.valueOf(n.getEdad()));
+                txtEquipo.setText(String.valueOf(n.getEquipoId()));
+            }
+        });
     }
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
 
-        if (!usuario.getTipo().equalsIgnoreCase("ADMIN")) {
+        if (usuario.getTipo().equalsIgnoreCase("USER")) {
             btnInsertar.setDisable(true);
             btnEditar.setDisable(true);
             btnEliminar.setDisable(true);
         }
-    }
-
-    private void cargarJugadores() {
-        lista = FXCollections.observableArrayList(jugadorDAO.listar());
-
-        FilteredList<Jugador> filtrada = new FilteredList<>(lista, p -> true);
-
-        txtBuscar.textProperty().addListener((obs, oldValue, newValue) -> {
-            filtrada.setPredicate(jugador -> {
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                String filtro = newValue.toLowerCase();
-                return jugador.getNombre().toLowerCase().contains(filtro);
-            });
-        });
-
-        SortedList<Jugador> ordenada = new SortedList<>(filtrada);
-        ordenada.comparatorProperty().bind(tablaJugadores.comparatorProperty());
-        tablaJugadores.setItems(ordenada);
     }
 
     @FXML
@@ -87,12 +92,13 @@ public class JugadorController {
         j.setEquipoId(Integer.parseInt(txtEquipo.getText()));
 
         jugadorDAO.insertar(j);
-        cargarJugadores();
+        recargar();
     }
 
     @FXML
     private void editarJugador() {
         Jugador j = tablaJugadores.getSelectionModel().getSelectedItem();
+
         if (j != null) {
             j.setNombre(txtNombre.getText());
             j.setPosicion(txtPosicion.getText());
@@ -100,17 +106,22 @@ public class JugadorController {
             j.setEquipoId(Integer.parseInt(txtEquipo.getText()));
 
             jugadorDAO.actualizar(j);
-            cargarJugadores();
+            recargar();
         }
     }
 
     @FXML
     private void eliminarJugador() {
         Jugador j = tablaJugadores.getSelectionModel().getSelectedItem();
+
         if (j != null) {
             jugadorDAO.eliminar(j.getId());
-            cargarJugadores();
+            recargar();
         }
+    }
+
+    private void recargar() {
+        listaJugadores.setAll(jugadorDAO.obtenerTodos());
     }
 
     @FXML

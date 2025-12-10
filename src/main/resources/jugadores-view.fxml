@@ -21,7 +21,8 @@
                 <TableColumn fx:id="colNombre" text="Nombre"/>
                 <TableColumn fx:id="colPosicion" text="Posición"/>
                 <TableColumn fx:id="colEdad" text="Edad"/>
-                <TableColumn fx:id="colEquipo" text="Equipo"/>
+
+                <TableColumn fx:id="colEquipoId" text="Equipo"/>
             </columns>
         </TableView>
     </center>

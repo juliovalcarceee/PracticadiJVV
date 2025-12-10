@@ -3,16 +3,15 @@ package com.liceolapaz.dam.jvv.dao;
 import com.liceolapaz.dam.jvv.db.ConexionBD;
 import com.liceolapaz.dam.jvv.model.Equipo;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EquipoDAOImp implements EquipoDAO {
+public class EquipoDAOImpl implements EquipoDAO {
 
     @Override
-    public List<Equipo> listar() {
+    public List<Equipo> obtenerTodos() {
+
         List<Equipo> lista = new ArrayList<>();
         String sql = "SELECT * FROM equipos";
 
@@ -36,40 +35,43 @@ public class EquipoDAOImp implements EquipoDAO {
     }
 
     @Override
-    public void insertar(Equipo e) {
+    public void insertar(Equipo equipo) {
+
         String sql = "INSERT INTO equipos (nombre, ciudad) VALUES (?, ?)";
 
         try (Connection con = ConexionBD.getConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setString(1, e.getNombre());
-            ps.setString(2, e.getCiudad());
+            ps.setString(1, equipo.getNombre());
+            ps.setString(2, equipo.getCiudad());
             ps.executeUpdate();
 
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     @Override
-    public void actualizar(Equipo e) {
+    public void actualizar(Equipo equipo) {
+
         String sql = "UPDATE equipos SET nombre=?, ciudad=? WHERE id=?";
 
         try (Connection con = ConexionBD.getConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setString(1, e.getNombre());
-            ps.setString(2, e.getCiudad());
-            ps.setInt(3, e.getId());
+            ps.setString(1, equipo.getNombre());
+            ps.setString(2, equipo.getCiudad());
+            ps.setInt(3, equipo.getId());
             ps.executeUpdate();
 
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     @Override
     public void eliminar(int id) {
+
         String sql = "DELETE FROM equipos WHERE id=?";
 
         try (Connection con = ConexionBD.getConexion();
@@ -78,8 +80,8 @@ public class EquipoDAOImp implements EquipoDAO {
             ps.setInt(1, id);
             ps.executeUpdate();
 
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

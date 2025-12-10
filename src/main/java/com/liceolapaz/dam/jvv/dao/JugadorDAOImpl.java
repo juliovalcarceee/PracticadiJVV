@@ -3,17 +3,17 @@ package com.liceolapaz.dam.jvv.dao;
 import com.liceolapaz.dam.jvv.db.ConexionBD;
 import com.liceolapaz.dam.jvv.model.Jugador;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class JugadorDAOImpl implements JugadorDAO {
 
     @Override
-    public List<Jugador> listar() {
+    public List<Jugador> obtenerTodos() {
+
         List<Jugador> lista = new ArrayList<>();
+
         String sql = "SELECT * FROM jugadores";
 
         try (Connection con = ConexionBD.getConexion();
@@ -38,16 +38,17 @@ public class JugadorDAOImpl implements JugadorDAO {
     }
 
     @Override
-    public void insertar(Jugador j) {
+    public void insertar(Jugador jugador) {
+
         String sql = "INSERT INTO jugadores (nombre, posicion, edad, equipo_id) VALUES (?, ?, ?, ?)";
 
         try (Connection con = ConexionBD.getConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setString(1, j.getNombre());
-            ps.setString(2, j.getPosicion());
-            ps.setInt(3, j.getEdad());
-            ps.setInt(4, j.getEquipoId());
+            ps.setString(1, jugador.getNombre());
+            ps.setString(2, jugador.getPosicion());
+            ps.setInt(3, jugador.getEdad());
+            ps.setInt(4, jugador.getEquipoId());
             ps.executeUpdate();
 
         } catch (Exception e) {
@@ -56,17 +57,18 @@ public class JugadorDAOImpl implements JugadorDAO {
     }
 
     @Override
-    public void actualizar(Jugador j) {
+    public void actualizar(Jugador jugador) {
+
         String sql = "UPDATE jugadores SET nombre=?, posicion=?, edad=?, equipo_id=? WHERE id=?";
 
         try (Connection con = ConexionBD.getConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setString(1, j.getNombre());
-            ps.setString(2, j.getPosicion());
-            ps.setInt(3, j.getEdad());
-            ps.setInt(4, j.getEquipoId());
-            ps.setInt(5, j.getId());
+            ps.setString(1, jugador.getNombre());
+            ps.setString(2, jugador.getPosicion());
+            ps.setInt(3, jugador.getEdad());
+            ps.setInt(4, jugador.getEquipoId());
+            ps.setInt(5, jugador.getId());
             ps.executeUpdate();
 
         } catch (Exception e) {
@@ -76,6 +78,7 @@ public class JugadorDAOImpl implements JugadorDAO {
 
     @Override
     public void eliminar(int id) {
+
         String sql = "DELETE FROM jugadores WHERE id=?";
 
         try (Connection con = ConexionBD.getConexion();
