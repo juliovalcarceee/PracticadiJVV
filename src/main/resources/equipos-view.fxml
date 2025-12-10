@@ -21,6 +21,8 @@
                 <TableColumn fx:id="colId" text="ID"/>
                 <TableColumn fx:id="colNombre" text="Nombre"/>
                 <TableColumn fx:id="colCiudad" text="Ciudad"/>
+                <!-- NUEVA: NOMBRE COMPLETO (calculada) -->
+                <TableColumn fx:id="colNombreCompleto" text="Nombre completo"/>
             </columns>
         </TableView>
     </center>

@@ -6,8 +6,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.liceolapaz.dam.jvv.controller.JugadorController"
-            stylesheets="@estilos.css">
+            fx:controller="com.liceolapaz.dam.jvv.controller.JugadorController">
 
     <top>
         <Label text="LISTA DE JUGADORES"
@@ -22,7 +21,9 @@
                 <TableColumn fx:id="colNombre" text="Nombre"/>
                 <TableColumn fx:id="colPosicion" text="Posición"/>
                 <TableColumn fx:id="colEdad" text="Edad"/>
-                <TableColumn fx:id="colEquipoId" text="Equipo"/>
+                <TableColumn fx:id="colEquipo" text="Equipo"/>
+                <!-- NUEVA COLUMNA CALCULADA -->
+                <TableColumn fx:id="colCategoria" text="Categoría"/>
             </columns>
         </TableView>
     </center>

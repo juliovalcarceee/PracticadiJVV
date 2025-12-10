@@ -6,7 +6,8 @@ public class Equipo {
     private String nombre;
     private String ciudad;
 
-    public Equipo() {}
+    public Equipo() {
+    }
 
     public Equipo(int id, String nombre, String ciudad) {
         this.id = id;
@@ -36,5 +37,11 @@ public class Equipo {
 
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
+    }
+
+    // ========= PROPIEDAD CALCULADA 2: NOMBRE COMPLETO =========
+    // Tampoco existe en la BD, se monta en Java
+    public String getNombreCompleto() {
+        return nombre + " (" + ciudad + ")";
     }
 }

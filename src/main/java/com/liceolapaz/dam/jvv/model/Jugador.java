@@ -58,4 +58,16 @@ public class Jugador {
     public void setEquipoId(int equipoId) {
         this.equipoId = equipoId;
     }
+
+    // ========= PROPIEDAD CALCULADA 1: CATEGORÍA SEGÚN LA EDAD =========
+    // NO existe en la base de datos, se calcula en Java
+    public String getCategoriaEdad() {
+        if (edad < 25) {
+            return "Joven";
+        } else if (edad <= 30) {
+            return "Prime";
+        } else {
+            return "Veterano";
+        }
+    }
 }
