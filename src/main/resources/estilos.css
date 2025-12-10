@@ -1,0 +1,87 @@
+/* ===== FONDO GENERAL ===== */
+.root {
+    -fx-font-family: "Segoe UI";
+    -fx-background-color: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+}
+
+/* ===== TITULOS ===== */
+.label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.label-titulo {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #00ffcc;
+}
+
+/* ===== BOTONES ===== */
+.button {
+    -fx-background-color: #00b4d8;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+}
+
+.button:hover {
+    -fx-background-color: #0096c7;
+}
+
+.button:disabled {
+    -fx-background-color: #555;
+}
+
+/* ===== CAMPOS DE TEXTO ===== */
+.text-field, .password-field {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #00ffcc;
+    -fx-background-color: #1c1c1c;
+    -fx-text-fill: white;
+}
+
+/* ===== TABLAS ===== */
+.table-view {
+    -fx-background-color: #1a1a1a;
+    -fx-border-color: #00ffcc;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #00b4d8;
+}
+
+.table-view .column-header,
+.table-view .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* Filas OSCURAS */
+.table-row-cell {
+    -fx-background-color: #1c1c1c;
+}
+
+.table-row-cell .table-cell {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* Filas CLARAS */
+.table-row-cell:odd {
+    -fx-background-color: #f2f2f2;
+}
+
+.table-row-cell:odd .table-cell {
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
+/* Fila seleccionada */
+.table-row-cell:selected {
+    -fx-background-color: #00ffcc;
+}
+
+.table-row-cell:selected .table-cell {
+    -fx-text-fill: black;
+}

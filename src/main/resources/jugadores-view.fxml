@@ -6,11 +6,12 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.liceolapaz.dam.jvv.controller.JugadorController">
+            fx:controller="com.liceolapaz.dam.jvv.controller.JugadorController"
+            stylesheets="@estilos.css">
 
     <top>
         <Label text="LISTA DE JUGADORES"
-               style="-fx-font-size:22px; -fx-font-weight:bold"
+               styleClass="label-titulo"
                BorderPane.alignment="CENTER"/>
     </top>
 
@@ -21,7 +22,6 @@
                 <TableColumn fx:id="colNombre" text="Nombre"/>
                 <TableColumn fx:id="colPosicion" text="Posición"/>
                 <TableColumn fx:id="colEdad" text="Edad"/>
-
                 <TableColumn fx:id="colEquipoId" text="Equipo"/>
             </columns>
         </TableView>
@@ -33,7 +33,7 @@
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
 
-            <TextField fx:id="txtBuscar" promptText="Buscar por nombre..."/>
+            <TextField fx:id="txtBuscar" promptText="Buscar jugador..."/>
 
             <TextField fx:id="txtNombre" promptText="Nombre"/>
             <TextField fx:id="txtPosicion" promptText="Posición"/>

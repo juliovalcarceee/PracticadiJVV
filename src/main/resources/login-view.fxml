@@ -3,20 +3,26 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.liceolapaz.dam.jvv.controller.LoginController">
+<AnchorPane xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.liceolapaz.dam.jvv.controller.LoginController"
+            stylesheets="@estilos.css">
 
-    <VBox spacing="10" layoutX="120" layoutY="80">
+    <children>
+        <VBox spacing="15" alignment="CENTER"
+              layoutX="150" layoutY="80"
+              style="-fx-padding:30; -fx-background-radius:20; -fx-background-color: rgba(0,0,0,0.6);">
 
-        <Label text="LOGIN"/>
+            <Label text="FÚTBOL APP" styleClass="label-titulo"/>
+            <Label text="Iniciar Sesión"/>
 
-        <TextField fx:id="txtUsuario" promptText="Usuario"/>
+            <TextField fx:id="txtUsuario" promptText="Usuario"/>
+            <PasswordField fx:id="txtPassword" promptText="Contraseña"/>
 
-        <PasswordField fx:id="txtPassword" promptText="Contraseña"/>
+            <Button text="Entrar" onAction="#onLogin"/>
+            <Label fx:id="lblMensaje"/>
 
-        <Button text="Entrar" onAction="#onLogin"/>
+        </VBox>
+    </children>
 
-        <Label fx:id="lblMensaje"/>
-
-    </VBox>
 </AnchorPane>

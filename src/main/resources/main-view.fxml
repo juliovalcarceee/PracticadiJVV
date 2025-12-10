@@ -5,16 +5,15 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.liceolapaz.dam.jvv.controller.MainController">
+            fx:controller="com.liceolapaz.dam.jvv.controller.MainController"
+            stylesheets="@estilos.css">
 
-    <!-- TITULO -->
     <top>
-        <Label text="DATOS DEL USUARIO"
-               style="-fx-font-size: 22px; -fx-font-weight: bold;"
+        <Label text="PANEL PRINCIPAL"
+               styleClass="label-titulo"
                BorderPane.alignment="CENTER"/>
     </top>
 
-    <!-- DATOS USUARIO -->
     <center>
         <VBox spacing="15" alignment="CENTER">
 
@@ -33,8 +32,7 @@
                 <Label fx:id="lblTipo"/>
             </HBox>
 
-            <!-- BOTONES -->
-            <HBox spacing="15" alignment="CENTER" style="-fx-padding: 20;">
+            <HBox spacing="20" style="-fx-padding:20;">
                 <Button text="Ver Equipos" onAction="#verEquipos"/>
                 <Button text="Ver Jugadores" onAction="#verJugadores"/>
                 <Button text="Salir" onAction="#salir"/>
